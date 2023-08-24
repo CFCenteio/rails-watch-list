@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h1><%= @list.name %></h1>
+  <div class="row my-3 mx-6">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="col-12 col-md-4">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
+          <h2><%= bookmark.movie.title %></h2>
+          <p><%= bookmark.comment %></p>
+          <p><%= link_to '+', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-link' %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%# <%= link_to "new bookmark", new_list_bookmark_path %>
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <h1>Add a bookmark</h1>
+
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :comment %>
+          <%= f.association :movie %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

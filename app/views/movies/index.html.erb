@@ -1,0 +1,12 @@
+<div class='container'>
+  <h1>Movies Index</h1>
+  <% @movies.each do |movie| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= movie.poster_url %>')">
+      <h2><%= movie.title %></h2>
+      <ul>
+        <li><%= movie.overview %></li>
+        <li><%= movie.rating %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
